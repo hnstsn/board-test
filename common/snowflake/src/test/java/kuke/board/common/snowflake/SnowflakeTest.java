@@ -33,11 +33,11 @@ class SnowflakeTest {
 		for (Future<List<Long>> future : futures) {
 			List<Long> idList = future.get();
 			for (int i = 1; i < idList.size(); i++) {
-				assertThat(idList.get(i)).isGreaterThan(idList.get(i - 1));
+				assertThat(idList.get(i)).isGreaterThan(idList.get(i - 1));		// 오름차순으로 생성되었는지 확인
 			}
 			result.addAll(idList);
 		}
-		assertThat(result.stream().distinct().count()).isEqualTo(repeatCount * idCount);
+		assertThat(result.stream().distinct().count()).isEqualTo(repeatCount * idCount);	// 중복체크
 
 		executorService.shutdown();
 	}
